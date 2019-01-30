@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<head>
+
+	<title>DA</title>
+
+</head>
+
+
+<canvas id="canvas" width="800" height="800" style="background:#000;"></canvas>
+
+
+
+
+<script>
+	var ctx = document.getElementById("canvas").getContext("2d");
+	ctx.fillStyle = "#ffffff";
+	
+    ctx.fillRect(150, 600, 1, -500);
+    ctx.fillRect(150, 600, 500, 1);
+    ctx.moveTo(150,100);
+    ctx.rotate(225*Math.PI/180);
+    ctx.lineTo(0,20);
+
+</script>
+
+</html>
