@@ -9,18 +9,83 @@
 
 <canvas id="canvas" width="800" height="800" style="background:#000;"></canvas>
 
-
+	<input type="text" id="weight">
+	<button onclick="clicker()">Submit</button>
 
 
 <script>
 	var ctx = document.getElementById("canvas").getContext("2d");
 	ctx.fillStyle = "#ffffff";
-	
+	var weight1= 1;
+	var weight2;
+	var speed1=0.0;
+	var speed2=0.0;
+	var X1=350;
+	var Y1=600;
+	var X2=440;
+	var Y2=600;
     ctx.fillRect(150, 600, 1, -500);
     ctx.fillRect(150, 600, 500, 1);
     ctx.moveTo(150,100);
-    ctx.rotate(225*Math.PI/180);
-    ctx.lineTo(0,20);
+    ctx.lineTo(120,140);
+    ctx.strokeStyle="white";
+	ctx.stroke();
+	var x=31.2;
+	var counter=0;
+	while(counter<16){
+		counter++;
+		ctx.moveTo(150,100+x*counter);
+	    ctx.lineTo(120,140+x*counter);
+	    ctx.strokeStyle="white";
+		ctx.stroke();
+	}
+	ctx.fillRect(X1, Y1, 70, -70);
+	ctx.fillRect(X2,Y2, 100, -100);
+
+	function clicker()
+	{
+		speed2=-1;
+		weight2=document.getElementById("weight").value;
+	}
+
+	setInterval(animate,10);
+	function animate()
+	{
+		ctx.clearRect(X1, Y1, 70, -70);
+		ctx.clearRect(X2, Y2, 100, -100);
+		
+		if(X2>=650)
+		{
+			speed1=speed2=0;
+		}
+
+
+		if(X1<=151)
+		 	speed1*=-1;
+
+
+		if(X1+71 == X2)
+		{
+			var sp1,sp2;
+			sp1=speed1;
+			sp2=speed2;
+			speed1=2*(weight1*sp1+weight2*sp2)/(weight1+weight2)-sp1;
+			speed2=2*(weight1*sp1+weight2*sp2)/(weight1+weight2)-sp2;
+		}
+
+		X1+=speed1;
+		X2+=speed2;
+
+		ctx.fillRect(X1, Y1, 70, -70);
+		ctx.fillRect(X2,Y2, 100, -100);
+		// ctx.clearRect(X1, Y1, 30, -30);
+		// ctx.restore();
+		// if(X1<=151 || X1>=629)
+		// 	speed1*=-1;
+		// X1+=(speed1);
+		// ctx.fillRect(X1, Y1, 30, -30);	
+
+	}
 
 </script>
 
